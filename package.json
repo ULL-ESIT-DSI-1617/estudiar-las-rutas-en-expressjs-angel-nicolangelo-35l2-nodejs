@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
+    "body-parser": "^1.16.1",
     "express": "^4.14.1",
     "gitbook": "^3.2.2",
     "node": "^0.0.0"
