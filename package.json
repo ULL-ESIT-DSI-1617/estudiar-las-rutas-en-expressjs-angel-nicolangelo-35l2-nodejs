@@ -1,7 +1,6 @@
 {
   "name": "estudiar-las-rutas-en-expressjs-angel-nicolangelo-35l2-nodejs",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "dependencies": {
     "express": "^4.14.1",
