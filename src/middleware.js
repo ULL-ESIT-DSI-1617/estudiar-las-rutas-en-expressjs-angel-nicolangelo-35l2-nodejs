@@ -2,15 +2,24 @@ var express = require('express');
 var moment = require('moment');
 var bodyParser     =         require("body-parser");
 var app = express();
+var router = express.Router();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+router.use(function (req, res, next) {
+  console.log('Fecha-router:', moment(Date.now()).format('DD/MM/YYYY'));
+  next();
+});
+
 
 app.use('/', function (req, res, next) {
   console.log('Request Type:', req.method);
   next();
 }, function(req, res, next) {
   console.log('Request URL:', req.originalUrl);
+  next();},  function (req, res, next) {
+  console.log('Fecha:', moment(Date.now()).format('DD/MM/YYYY'));
   next();
 });
 
