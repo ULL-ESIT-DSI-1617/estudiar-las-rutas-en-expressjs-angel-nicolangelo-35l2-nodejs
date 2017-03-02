@@ -22,10 +22,8 @@ app.get('/',function(req,res){
 app.post('/',function(req,res){
   var user_name=req.body.user;
   var password=req.body.password;
-  console.log("User name = "+user_name+", password is "+password);
+  console.log("User name1 = "+user_name+", password is "+password);
   res.end("yes");
-  
-    
 });
 
 app.delete('/', function (req, res) {
@@ -35,4 +33,9 @@ app.delete('/', function (req, res) {
 app.listen(process.env.PORT, process.env.IP,function () {
 // app.listen(3000,function(){
   console.log("Started on PORT 3000");
-})
+});
+//middleware
+// app.use(function (req, res, next) {
+//   console.log('Time:', Date.now());
+//   next();
+// });
