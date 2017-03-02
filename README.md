@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-Rama de Pruebas - node
-=======
 # Práctica 3: Estudiar las Rutas en ExpressJS
 
 Este libro fue creado por Ángel Luis Morales Hernández, Alexandra Esplugas Sabina y Nicolangelo Famiglietti.
@@ -44,10 +41,9 @@ Casiano Rodríguez León
 * [GitHub](https://github.com/alu0100912005)
 
 ## Despliegue del libro
-* [Despliegue del libro en gitbook](copiar aqui la dir)
+* [Despliegue del libro en gitbook](https://nico_alu0100912005.gitbooks.io/estudiar-las-rutas-en-expressjs/content/)
 * [Despliegue del libro en gh-pages](copiar aqui la dir)
 * [Despliegue del libro en Iaas](copiar aqui la dir)
 
 ## Enlace del grupo
 [Enlace al grupo en GitHub](https://github.com/ULL-ESIT-DSI-1617/estudiar-las-rutas-en-expressjs-angel-nicolangelo-alexandra-35l2-nodejs)
->>>>>>> f723d8f68abe993f48b7185cbc9397b6b45fd8a2
