@@ -1,0 +1,527 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Chapter 5: Documentación de Router · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="../chapter4/chapter4.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introducción
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../chapter1/chapter1.html">
+            
+                <a href="../chapter1/chapter1.html">
+            
+                    
+                    Chapter 1: Instalación Express JS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../chapter2/chapter2.html">
+            
+                <a href="../chapter2/chapter2.html">
+            
+                    
+                    Chapter 2: Direccionamiento básico
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../chapter3/chapter3.html">
+            
+                <a href="../chapter3/chapter3.html">
+            
+                    
+                    Chapter 3: Guía de direccionamiento
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../chapter4/chapter4.html">
+            
+                <a href="../chapter4/chapter4.html">
+            
+                    
+                    Chapter 4: Utilización del middleware
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6" data-path="chapter5.html">
+            
+                <a href="chapter5.html">
+            
+                    
+                    Chapter 5: Documentación de Router
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Chapter 5: Documentación de Router</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="router">Router</h1>
+<p>A router object is an isolated instance of middleware and routes. You can think of it as a &#x201C;mini-application,&#x201D; capable only of performing middleware and routing functions. Every Express application has a built-in app router.</p>
+<p>A router behaves like middleware itself, so you can use it as an argument toapp.use()or as the argument to another router&#x2019;s use() method.</p>
+<p>The top-levelexpressobject has aRouter()method that creates a newrouterobject.</p>
+<p>Once you&#x2019;ve created a router object, you can add middleware and HTTP method routes (such asget,put,post, and so on) to it just like an application. For example:</p>
+<p>// invoked for any requests passed to this router</p>
+<p>router.use(function(req, res, next) {</p>
+<p>  // .. some logic here .. like any other middleware</p>
+<p>  next();</p>
+<p>});</p>
+<p>// will handle any request that ends in /events</p>
+<p>// depends on where the router is &quot;use()&apos;d&quot;</p>
+<p>router.get(&apos;/events&apos;, function(req, res, next) {</p>
+<p>  // ..</p>
+<p>});</p>
+<p>You can then use a router for a particular root URL in this way separating your routes into files or even mini-apps.</p>
+<p>// only requests to /calendar/* will be sent to our &quot;router&quot;</p>
+<p>app.use(&apos;/calendar&apos;, router);</p>
+<h2 id="methods">Methods</h2>
+<h3 id="routerallpath-callback--callback">router.all(path, [callback, ...] callback)</h3>
+<p>This method is just like therouter.METHOD()methods, except that it matches all HTTP methods (verbs).</p>
+<p>This method is extremely useful for mapping &#x201C;global&#x201D; logic for specific path prefixes or arbitrary matches. For example, if you placed the following route at the top of all other route definitions, it would require that all routes from that point on would require authentication, and automatically load a user. Keep in mind that these callbacks do not have to act as end points;loadUsercan perform a task, then callnext()to continue matching subsequent routes.</p>
+<p>router.all(&apos;*&apos;, requireAuthentication, loadUser);</p>
+<p>Or the equivalent:</p>
+<p>router.all(&apos;*&apos;, requireAuthentication)</p>
+<p>router.all(&apos;*&apos;, loadUser);</p>
+<p>Another example of this is white-listed &#x201C;global&#x201D; functionality. Here the example is much like before, but it only restricts paths prefixed with &#x201C;/api&#x201D;:</p>
+<p>router.all(&apos;/api/*&apos;, requireAuthentication);</p>
+<h3 id="routermethodpath-callback--callback">router.METHOD(path, [callback, ...] callback)</h3>
+<p>The router.METHOD() methods provide the routing functionality in Express, where METHOD is one of the HTTP methods, such as GET, PUT, POST, and so on, in lowercase. Thus, the actual methods arerouter.get(),router.post(),router.put(), and so on.</p>
+<p>Therouter.get()function is automatically called for the HTTPHEADmethod in addition to theGETmethod ifrouter.head()was not called for the path beforerouter.get().</p>
+<p>You can provide multiple callbacks, and all are treated equally, and behave just like middleware, except that these callbacks may invokenext(&apos;route&apos;)to bypass the remaining route callback(s). You can use this mechanism to perform pre-conditions on a route then pass control to subsequent routes when there is no reason to proceed with the route matched.</p>
+<p>The following snippet illustrates the most simple route definition possible. Express translates the path strings to regular expressions, used internally to match incoming requests. Query strings are_not_considered when performing these matches, for example &#x201C;GET /&#x201D; would match the following route, as would &#x201C;GET /?name=tobi&#x201D;.</p>
+<p>router.get(&apos;/&apos;, function(req, res){</p>
+<p>  res.send(&apos;hello world&apos;);</p>
+<p>});</p>
+<p>You can also use regular expressions&#x2014;useful if you have very specific constraints, for example the following would match &#x201C;GET /commits/71dbb9c&#x201D; as well as &#x201C;GET /commits/71dbb9c..4c084f9&#x201D;.</p>
+<p>router.get(/^\/commits\/(\w+)(?:..(\w+))?$/, function(req, res){</p>
+<p>  var from = req.params[0];</p>
+<p>  var to = req.params[1] || &apos;HEAD&apos;;</p>
+<p>  res.send(&apos;commit range &apos; + from + &apos;..&apos; + to);</p>
+<p>});</p>
+<h3 id="routerparamname-callback">router.param(name, callback)</h3>
+<p>Adds callback triggers to route parameters, wherenameis the name of the parameter andcallbackis the callback function. Althoughnameis technically optional, using this method without it is deprecated starting with Express v4.11.0 (see below).</p>
+<p>The parameters of the callback function are:</p>
+<ul>
+<li>req, the request object.</li>
+<li>res, the response object.</li>
+<li>next, indicating the next middleware function.</li>
+<li>The value of the nameparameter.</li>
+<li>The name of the parameter.</li>
+</ul>
+<p>For example, when:useris present in a route path, you may map user loading logic to automatically providereq.userto the route, or perform validations on the parameter input.</p>
+<p>router.param(&apos;user&apos;, function(req, res, next, id) {</p>
+<p>  // try to get the user details from the User model and attach it to the request object</p>
+<p>  User.find(id, function(err, user) {</p>
+<pre><code>if (err) {
+
+  next(err);
+
+} else if (user) {
+
+  req.user = user;
+
+  next();
+
+} else {
+
+  next(new Error(&apos;failed to load user&apos;));
+
+}
+</code></pre><p>  });</p>
+<p>});</p>
+<p>Param callback functions are local to the router on which they are defined. They are not inherited by mounted apps or routers. Hence, param callbacks defined onrouterwill be triggered only by route parameters defined onrouterroutes.</p>
+<p>A param callback will be called only once in a request-response cycle, even if the parameter is matched in multiple routes, as shown in the following examples.</p>
+<p>router.param(&apos;id&apos;, function (req, res, next, id) {</p>
+<p>  console.log(&apos;CALLED ONLY ONCE&apos;);</p>
+<p>  next();</p>
+<p>});</p>
+<p>router.get(&apos;/user/:id&apos;, function (req, res, next) {</p>
+<p>  console.log(&apos;although this matches&apos;);</p>
+<p>  next();</p>
+<p>});</p>
+<p>router.get(&apos;/user/:id&apos;, function (req, res) {</p>
+<p>  console.log(&apos;and this matches too&apos;);</p>
+<p>  res.end();</p>
+<p>});</p>
+<p>OnGET /user/42, the following is printed:</p>
+<p>CALLED ONLY ONCE
+although this matches
+and this matches too
+The following section describesrouter.param(callback), which is deprecated as of v4.11.0.</p>
+<p>The behavior of therouter.param(name, callback)method can be altered entirely by passing only a function torouter.param(). This function is a custom implementation of howrouter.param(name, callback)should behave - it accepts two parameters and must return a middleware.</p>
+<p>The first parameter of this function is the name of the URL parameter that should be captured, the second parameter can be any JavaScript object which might be used for returning the middleware implementation.</p>
+<p>The middleware returned by the function decides the behavior of what happens when a URL parameter is captured.</p>
+<p>In this example, therouter.param(name, callback)signature is modified torouter.param(name, accessId). Instead of accepting a name and a callback,router.param()will now accept a name and a number.</p>
+<p>var express = require(&apos;express&apos;);</p>
+<p>var app = express();</p>
+<p>var router = express.Router();</p>
+<p>// customizing the behavior of router.param()</p>
+<p>router.param(function(param, option) {</p>
+<p>  return function (req, res, next, val) {</p>
+<pre><code>if (val == option) {
+
+  next();
+
+}
+
+else {
+
+  res.sendStatus(403);
+
+}
+</code></pre><p>  }</p>
+<p>});</p>
+<p>// using the customized router.param()</p>
+<p>router.param(&apos;id&apos;, 1337);</p>
+<p>// route to trigger the capture</p>
+<p>router.get(&apos;/user/:id&apos;, function (req, res) {</p>
+<p>  res.send(&apos;OK&apos;);</p>
+<p>});</p>
+<p>app.use(router);</p>
+<p>app.listen(3000, function () {</p>
+<p>  console.log(&apos;Ready&apos;);</p>
+<p>});</p>
+<p>In this example, therouter.param(name, callback)signature remains the same, but instead of a middleware callback, a custom data type checking function has been defined to validate the data type of the user id.</p>
+<p>router.param(function(param, validator) {</p>
+<p>  return function (req, res, next, val) {</p>
+<pre><code>if (validator(val)) {
+
+  next();
+
+}
+
+else {
+
+  res.sendStatus(403);
+
+}
+</code></pre><p>  }</p>
+<p>});</p>
+<p>router.param(&apos;id&apos;, function (candidate) {</p>
+<p>  return !isNaN(parseFloat(candidate)) &amp;&amp; isFinite(candidate);</p>
+<p>});</p>
+<h3 id="routerroutepath">router.route(path)</h3>
+<p>Returns an instance of a single route which you can then use to handle HTTP verbs with optional middleware. Userouter.route()to avoid duplicate route naming and thus typing errors.</p>
+<p>Building on therouter.param()example above, the following code shows how to userouter.route()to specify various HTTP method handlers.</p>
+<p>var router = express.Router();</p>
+<p>router.param(&apos;user_id&apos;, function(req, res, next, id) {</p>
+<p>  // sample user, would actually fetch from DB, etc...</p>
+<p>  req.user = {</p>
+<pre><code>id: id,
+
+name: &apos;TJ&apos;
+</code></pre><p>  };</p>
+<p>  next();</p>
+<p>});</p>
+<p>router.route(&apos;/users/:user_id&apos;)</p>
+<p>.all(function(req, res, next) {</p>
+<p>  // runs for all HTTP verbs first</p>
+<p>  // think of it as route specific middleware!</p>
+<p>  next();</p>
+<p>})</p>
+<p>.get(function(req, res, next) {</p>
+<p>  res.json(req.user);</p>
+<p>})</p>
+<p>.put(function(req, res, next) {</p>
+<p>  // just an example of maybe updating the user</p>
+<p>  req.user.name = req.params.name;</p>
+<p>  // save user ... etc</p>
+<p>  res.json(req.user);</p>
+<p>})</p>
+<p>.post(function(req, res, next) {</p>
+<p>  next(new Error(&apos;not implemented&apos;));</p>
+<p>})</p>
+<p>.delete(function(req, res, next) {</p>
+<p>  next(new Error(&apos;not implemented&apos;));</p>
+<p>})</p>
+<p>This approach re-uses the single/users/:user_idpath and adds handlers for various HTTP methods.</p>
+<p>NOTE: When you userouter.route(), middleware ordering is based on when the_route_is created, not when method handlers are added to the route. For this purpose, you can consider method handlers to belong to the route to which they were added.</p>
+<h3 id="routerusepath-function--function">router.use([path], [function, ...] function)</h3>
+<p>Uses the specified middleware function or functions, with optional mount pathpath, that defaults to &#x201C;/&#x201D;.</p>
+<p>This method is similar toapp.use(). A simple example and use case is described below. Seeapp.use()for more information.</p>
+<p>Middleware is like a plumbing pipe: requests start at the first middleware function defined and work their way &#x201C;down&#x201D; the middleware stack processing for each path they match.</p>
+<p>var express = require(&apos;express&apos;);</p>
+<p>var app = express();</p>
+<p>var router = express.Router();</p>
+<p>// simple logger for this router&apos;s requests</p>
+<p>// all requests to this router will first hit this middleware</p>
+<p>router.use(function(req, res, next) {</p>
+<p>  console.log(&apos;%s %s %s&apos;, req.method, req.url, req.path);</p>
+<p>  next();</p>
+<p>});</p>
+<p>// this will only be invoked if the path starts with /bar from the mount point</p>
+<p>router.use(&apos;/bar&apos;, function(req, res, next) {</p>
+<p>  // ... maybe some additional /bar logging ...</p>
+<p>  next();</p>
+<p>});</p>
+<p>// always invoked</p>
+<p>router.use(function(req, res, next) {</p>
+<p>  res.send(&apos;Hello World&apos;);</p>
+<p>});</p>
+<p>app.use(&apos;/foo&apos;, router);</p>
+<p>app.listen(3000);</p>
+<p>The &#x201C;mount&#x201D; path is stripped and is_not_visible to the middleware function. The main effect of this feature is that a mounted middleware function may operate without code changes regardless of its &#x201C;prefix&#x201D; pathname.</p>
+<p>The order in which you define middleware withrouter.use()is very important. They are invoked sequentially, thus the order defines middleware precedence. For example, usually a logger is the very first middleware you would use, so that every request gets logged.</p>
+<p>var logger = require(&apos;morgan&apos;);</p>
+<p>router.use(logger());</p>
+<p>router.use(express.static(__dirname + &apos;/public&apos;));</p>
+<p>router.use(function(req, res){</p>
+<p>  res.send(&apos;Hello&apos;);</p>
+<p>});</p>
+<p>Now suppose you wanted to ignore logging requests for static files, but to continue logging routes and middleware defined afterlogger(). You would simply move the call toexpress.static()to the top, before adding the logger middleware:</p>
+<p>router.use(express.static(__dirname + &apos;/public&apos;));</p>
+<p>router.use(logger());</p>
+<p>router.use(function(req, res){</p>
+<p>  res.send(&apos;Hello&apos;);</p>
+<p>});</p>
+<p>Another example is serving files from multiple directories, giving precedence to &#x201C;./public&#x201D; over the others:</p>
+<p>app.use(express.static(__dirname + &apos;/public&apos;));</p>
+<p>app.use(express.static(__dirname + &apos;/files&apos;));</p>
+<p>app.use(express.static(__dirname + &apos;/uploads&apos;));</p>
+<p>Therouter.use()method also supports named parameters so that your mount points for other routers can benefit from preloading using named parameters.</p>
+<p>NOTE: Although these middleware functions are added via a particular router,_when_they run is defined by the path they are attached to (not the router). Therefore, middleware added via one router may run for other routers if its routes match. For example, this code shows two different routers mounted on the same path:</p>
+<p>var authRouter = express.Router();</p>
+<p>var openRouter = express.Router();</p>
+<p>authRouter.use(require(&apos;./authenticate&apos;).basic(usersdb));</p>
+<p>authRouter.get(&apos;/:user_id/edit&apos;, function(req, res, next) { </p>
+<p>  // ... Edit user UI ...  </p>
+<p>});</p>
+<p>openRouter.get(&apos;/&apos;, function(req, res, next) { </p>
+<p>  // ... List users ... </p>
+<p>})
+openRouter.get(&apos;/:user_id&apos;, function(req, res, next) { </p>
+<p>  // ... View user ... </p>
+<p>})</p>
+<p>app.use(&apos;/users&apos;, authRouter);</p>
+<p>app.use(&apos;/users&apos;, openRouter);</p>
+<p>Even though the authentication middleware was added via theauthRouterit will run on the routes defined by theopenRouteras well since both routers were mounted on/users. To avoid this behavior, use different paths for each router.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../chapter4/chapter4.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Chapter 4: Utilización del middleware">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Chapter 5: Documentación de Router","level":"1.6","depth":1,"previous":{"title":"Chapter 4: Utilización del middleware","level":"1.5","depth":1,"path":"chapter4/chapter4.md","ref":"chapter4/chapter4.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter5/chapter5.md","mtime":"2017-03-02T18:33:10.407Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-03-06T09:31:36.668Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

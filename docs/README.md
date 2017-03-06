@@ -14,6 +14,7 @@ El libro sirve de auto-aprendizaje para la realización de esta práctica.
     * [Using Middleware](http://expressjs.com/en/guide/using-middleware.html)
     * [Router API Documentation](http://expressjs.com/en/4x/api.html#router)
 
+
 2. Elabore a partir de ellas un libro GitBook con sus notas e ilustre con ejemplos el uso de las distintas secciones.
 
 * El repo debe tener un directorio docs/ con los MarkDown del libro y un directorio src/ con los códigos fuentes de los ejemplos.

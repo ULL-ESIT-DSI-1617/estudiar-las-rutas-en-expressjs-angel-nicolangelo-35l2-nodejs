@@ -1,12 +1,18 @@
 {
-  "name": "estudiar-las-rutas-en-expressjs-angel-nicolangelo-35l2-nodejs",
+  "name": "estudiar-las-rutas-en-expressjs-angel-nicolangelo-alexandra-35l2-nodejs",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Práctica 3: Estudiar las rutas en ExpressJS",
+  "main": "gulpfile.js",
+  "directories": {
+    "doc": "docs"
+  },
   "dependencies": {
-    "body-parser": "^1.16.1",
-    "express": "^4.14.1",
-    "gitbook": "^3.2.2",
+    "6": "^0.0.1",
+    "body-parser": "^1.17.0",
+    "express": "^4.15.0",
+    "git": "^0.1.5",
     "gitbook-cli": "^2.3.0",
+    "gitbook": "^3.2.2",
     "gulp": "^3.9.1",
     "gulp-gh-pages": "^0.5.4",
     "gulp-serve": "^1.4.0",
@@ -19,12 +25,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ULL-ESIT-DSI-1617/estudiar-las-rutas-en-expressjs-angel-nicolangelo-35l2-nodejs.git"
+    "url": "git+https://github.com/ULL-ESIT-DSI-1617/estudiar-las-rutas-en-expressjs-angel-nicolangelo-alexandra-35l2-nodejs.git"
   },
-  "author": "",
+  "keywords": [
+    "nodejs",
+    "expressjs",
+    "middleware"
+  ],
+  "author": "Nicolangelo, Angel, Alexandra",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ULL-ESIT-DSI-1617/estudiar-las-rutas-en-expressjs-angel-nicolangelo-35l2-nodejs/issues"
+    "url": "https://github.com/ULL-ESIT-DSI-1617/estudiar-las-rutas-en-expressjs-angel-nicolangelo-alexandra-35l2-nodejs/issues"
   },
-  "homepage": "https://github.com/ULL-ESIT-DSI-1617/estudiar-las-rutas-en-expressjs-angel-nicolangelo-35l2-nodejs"
+  "homepage": "https://github.com/ULL-ESIT-DSI-1617/estudiar-las-rutas-en-expressjs-angel-nicolangelo-alexandra-35l2-nodejs#readme"
 }
