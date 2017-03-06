@@ -43,7 +43,7 @@ Casiano Rodríguez León
 ## Despliegue del libro
 * [Despliegue del libro en gitbook](https://nico_alu0100912005.gitbooks.io/estudiar-las-rutas-en-expressjs/content/)
 * [Despliegue del libro en gh-pages](https://ull-esit-dsi-1617.github.io/estudiar-las-rutas-en-expressjs-angel-nicolangelo-alexandra-35l2-nodejs/)
-* [Despliegue del libro en Iaas](copiar aqui la dir)
+* [Despliegue del libro en Iaas](10.6.128.52:8080)
 
 ## Enlace del grupo
 [Enlace al grupo en GitHub](https://github.com/ULL-ESIT-DSI-1617/estudiar-las-rutas-en-expressjs-angel-nicolangelo-alexandra-35l2-nodejs)
